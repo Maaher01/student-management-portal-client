@@ -1,0 +1,19 @@
+<h1 class="header">Student Details</h1>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<div class="card">
+    <div *ngIf="student">
+        <h2>Full Name: {{student.full_name}}</h2>
+        <p class="id">ID: {{student.id}}</p>
+        <p>Department: {{student.department}}</p>
+        <p>Semester No.: {{student.semester_no}}</p>
+        <p>Current CGPA: {{student.current_cgpa}}</p>
+        <p>Mobile No.: {{student.mobile_no}}</p>
+        <p>Email: {{student.email}}</p>
+        <p>Date of Birth: {{student.dob}}</p>
+        <p>Gender: {{student.gender}}</p>
+        <p>Address: {{student.address}}</p>
+        <p>Father's Name: {{student.father_name}}</p>
+        <p>Mother's Name: {{student.mother_name}}</p>
+    </div>
+</div>

@@ -1,0 +1,23 @@
+/* You can add global styles to this file, and also import other style files */
+html, body { height: 100%; }
+body { margin: 0; 
+    font-family: Roboto, "Helvetica Neue", sans-serif; 
+    box-sizing: border-box}
+
+.container{
+    padding-left: 15%;
+    padding-right: 15%;
+    padding-top: 50px;
+}
+
+.mat-button-base{
+    margin-right: 8px !important;
+}
+
+.p-datatable-thead th{
+    text-align: center !important;
+}
+
+.p-datatable-tbody td{
+    text-align: center !important;
+}

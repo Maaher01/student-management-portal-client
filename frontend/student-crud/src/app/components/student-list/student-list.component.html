@@ -1,0 +1,36 @@
+<p-toast></p-toast>
+
+<div class="card">
+  <p-table class="table" [value]="students" [paginator]="true" [rowHover]="true" [rowsPerPageOptions]="[10,20,30]" [rows]="10" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
+    <ng-template pTemplate="caption">
+      <div class="flex align-items-center justify-content-between">
+        <h2 class="m-0">Student List</h2>
+        <button class="new" mat-raised-button color="primary" [routerLink] = "['/add']"><i class="pi pi-plus"></i></button>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th pColumn="id">ID</th>
+        <th pColumn="name">Name</th>
+        <th pColumn="department">Department</th>
+        <th pColumn="semester_no">Semester No.</th>
+        <th pColumn="current_cgpa">Current CGPA</th>
+        <th pColumn="actions">Actions</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-student>
+      <tr>
+        <td>{{student.id}}</td>
+        <td>{{student.full_name}}</td>
+        <td>{{student.department}}</td>
+        <td>{{student.semester_no}}</td>
+        <td>{{student.current_cgpa}}</td>
+        <td>
+          <button mat-fab color="primary" (click)="goToDetails(student.id)"><i class="pi pi-eye"></i></button>
+          <button mat-fab color="accent" (click)="goToUpdate(student.id)"><i class="pi pi-pencil"></i></button>
+          <button mat-fab color="warn" (click)="deleteStudent(student.id)"><i class="pi pi-trash"></i></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

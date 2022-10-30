@@ -1,0 +1,48 @@
+<h1 class="header">Edit Student Details</h1>
+<div class="submit-form">
+    <div class="form-group">
+        <label for="full_name">Name</label>
+        <input class="form-control" id="name" required name="name" [(ngModel)]="student.full_name" />
+    </div>
+    <div class="form-group">
+        <label for="department">Department</label>
+        <input class="form-control" id="department" required name="department" [(ngModel)]="student.department" />
+    </div>
+    <div class="form-group">
+        <label for="semester_no">Semester No.</label>
+        <input class="form-control" id="semester" required name="semester" [(ngModel)]="student.semester_no" />
+    </div>
+    <div class="form-group">
+        <label for="current_cgpa">Current CGPA</label>
+        <input class="form-control" id="cgpa" required name="cgpa" [(ngModel)]="student.current_cgpa" />
+    </div>
+    <div class="form-group">
+        <label for="mobile_no">Mobile No.</label>
+        <input class="form-control" id="mobile" required name="mobile" [(ngModel)]="student.mobile_no" />
+    </div>
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input class="form-control" id="email" required name="email" [(ngModel)]="student.email" />
+    </div>
+    <div class="form-group">
+        <label for="dob">Date of Birth</label>
+        <input class="form-control" id="dob" name="dob" [(ngModel)]="student.dob" />
+    </div>
+    <div class="form-group">
+        <label for="gender">Gender</label>
+        <input class="form-control" id="gender" required name="description" [(ngModel)]="student.gender" />
+    </div>
+    <div class="form-group">
+        <label for="address">Address</label>
+        <input class="form-control" id="address" required name="address" [(ngModel)]="student.address" />
+    </div>
+    <div class="form-group">
+        <label for="father_name">Father's Name</label>
+        <input class="form-control" id="father_name" required name="father_name" [(ngModel)]="student.father_name" />
+    </div>
+    <div class="form-group">
+        <label for="mother_name">Mother's Name</label>
+        <input class="form-control" id="mother_name" required name="mother_name" [(ngModel)]="student.mother_name" />
+    </div>
+</div>
+<button class="btn btn-success" (click)="updateStudent(student.id)">Submit</button>
