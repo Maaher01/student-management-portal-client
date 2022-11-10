@@ -1,11 +1,13 @@
-<p-toast></p-toast>
-
 <div class="card">
   <p-table class="table" [value]="students" [paginator]="true" [rowHover]="true" [rowsPerPageOptions]="[10,20,30]" [rows]="10" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
     <ng-template pTemplate="caption">
       <div class="flex align-items-center justify-content-between">
-        <h2 class="m-0">Student List</h2>
-        <button class="new" mat-raised-button color="primary" [routerLink] = "['/add']"><i class="pi pi-plus"></i></button>
+        <div class="flex-child">
+          <h2 class="m-0">Student List</h2>
+        </div>
+        <div class="flex-child">
+          <button class="new" mat-raised-button color="primary" [routerLink]="['/add']"><i class="pi pi-plus"> New</i></button>
+        </div>
       </div>
     </ng-template>
     <ng-template pTemplate="header">
@@ -28,9 +30,10 @@
         <td>
           <button mat-fab color="primary" (click)="goToDetails(student.id)"><i class="pi pi-eye"></i></button>
           <button mat-fab color="accent" (click)="goToUpdate(student.id)"><i class="pi pi-pencil"></i></button>
-          <button mat-fab color="warn" (click)="deleteStudent(student.id)"><i class="pi pi-trash"></i></button>
+          <button mat-fab color="warn" (click)="open(student.id)"><i class="pi pi-trash"></i></button>
         </td>
       </tr>
     </ng-template>
+    <app-delete-modal #DeleteModal (newDeleteEvent)="getDeleteValue($event)" [modalStyle]="modalStyle" [modalTitle]="modalTitle" [modalBody]="modalBody" [modalButtonColor]="modalButtonColor"></app-delete-modal>
   </p-table>
 </div>

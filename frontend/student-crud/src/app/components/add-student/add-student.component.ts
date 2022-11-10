@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router'
+import { Router } from '@angular/router';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add-student',
@@ -8,41 +9,75 @@ import { Router } from '@angular/router'
   styleUrls: ['./add-student.component.css']
 })
 export class AddStudentComponent {
-  full_name: string = ''
-  id: number = 0
-  department: string = ''
-  semester_no: number = 0
-  current_cgpa: number = 0 
-  mobile_no: string = '' 
-  email: string = '' 
-  dob: string = ''
-  gender: string = ''
-  address: string = ''
-  father_name: string = ''
-  mother_name: string = ''
 
   constructor(private http: HttpClient, private router: Router) { }
 
-  createStudent(full_name: string, id: number, department: string, semester_no: number, current_cgpa: number, mobile_no: string, email: string, dob: string, gender: string, address: string, father_name: string, mother_name: string) {
-    let student = {
-      full_name: full_name,
-      id: id,
-      department: department,
-      semester_no: semester_no,
-      current_cgpa: current_cgpa,
-      mobile_no: mobile_no,
-      email: email,
-      dob: dob,
-      gender: gender,
-      address: address,
-      father_name: father_name,
-      mother_name: mother_name
+    addStudentForm = new FormGroup({
+      name : new FormControl('', [
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(256)
+      ]),
+
+      id : new FormControl('', [
+        Validators.required,
+        Validators.minLength(6),
+        Validators.maxLength(6)
+      ]),
+
+      department : new FormControl('', [
+        Validators.required,
+        Validators.minLength(2),
+        Validators.maxLength(256)
+      ]),
+
+      semester : new FormControl('', [
+        Validators.required,
+        Validators.maxLength(2)
+      ]),
+
+      cgpa : new FormControl('', []),
+
+      mobile : new FormControl('', [
+        Validators.required
+      ]),
+
+      email : new FormControl('', [
+        Validators.required,
+        Validators.email
+      ]),
+
+      dob : new FormControl('', [
+        Validators.required
+      ]),
+
+      gender : new FormControl('', [
+        Validators.required
+      ]),
+
+      address : new FormControl('', [
+        Validators.required,
+        Validators.maxLength(256)
+      ]),
+
+      fatherName : new FormControl('', [
+        Validators.required,
+        Validators.minLength(3)
+      ]),
+
+      motherName : new FormControl('', [
+        Validators.required,
+        Validators.minLength(3)
+      ])
+    })
+
+    createStudent() {
+      console.log(this.addStudentForm.value)
+      this.http.post(`http://localhost:3000/students`, this.addStudentForm.value).subscribe(
+        res => {
+          this.router.navigate(['/students'])
+          console.log(res)
+        }
+      )
     }
-    this.http.post(`http://localhost:3000/students`, student).subscribe(
-      res => {
-        this.router.navigate(['/students'])
-        console.log(res)
-      }
-    )
   }
-}

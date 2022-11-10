@@ -1,0 +1,22 @@
+<ng-template #DeleteModal let-c="close" let-d="dismiss">
+    <div class="modal-header {{ modalStyle }}">
+      <h5 class="modal-title" id="modal-title">
+        {{ modalTitle }}
+      </h5>
+      <button type="button" class="close" (click)="d('Cross click')">
+      </button>
+    </div>
+    <div class="modal-body">
+      <p>
+        {{ modalBody }}
+      </p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-secondary" (click)="d('Cross click')">
+        Cancel
+      </button>
+      <button type="button" class="btn {{ modalButtonColor }}" (click)="c('Delete Student')">
+        Yes
+      </button>
+    </div>
+  </ng-template>

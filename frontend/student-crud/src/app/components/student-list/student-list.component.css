@@ -1,0 +1,22 @@
+button.new {
+    float: right;
+    height: 45px;
+    width: 100px;
+}
+
+h2.m-0 {
+    font-size: 28px;
+}
+
+i.pi {
+    font-size: 20px;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-child {
+    flex: 1;
+}
+  

@@ -1,48 +1,139 @@
 <h1 class="header">Edit Student Details</h1>
-<div class="submit-form">
-    <div class="form-group">
-        <label for="full_name">Name</label>
-        <input class="form-control" id="name" required name="name" [(ngModel)]="student.full_name" />
+<button class="back" mat-raised-button color="accent" [routerLink]="['/students']"><i class="pi pi-arrow-left"> Back</i></button>
+<form [formGroup]="updateStudentForm" (ngSubmit)="updateStudent(student.id)">
+    <div>
+        <div class="submit-form">
+            <div class="form-child">
+                <div class="form-group">
+                    <label for="full_name">Name</label>
+                    <input type="text" formControlName="name" id="full_name" name="full_name" />
+                    <div *ngIf="(updateStudentForm.controls['name']?.dirty || updateStudentForm.controls['name']?.touched) && updateStudentForm.controls['name'].invalid">
+                        <mat-error *ngIf="updateStudentForm.controls['name']?.hasError('minlength')">
+                            Name must have atleast 3 characters
+                        </mat-error>
+                        <mat-error *ngIf="updateStudentForm.controls['name']?.hasError('maxlength')">
+                            Name cannot contain more than 256 characters
+                        </mat-error>
+                        <mat-error *ngIf="updateStudentForm.controls['name']?.hasError('required')">
+                            Name is required
+                        </mat-error>
+                    </div>
+                    <div class="form-group">
+                        <label for="department">Department</label>
+                        <input type="text" formControlName="department" id="department" name="department" />
+                        <div *ngIf="(updateStudentForm.controls['department']?.dirty || updateStudentForm.controls['department']?.touched) && updateStudentForm.controls['department'].invalid">
+                            <mat-error *ngIf="updateStudentForm.controls['department']?.hasError('minlength')">
+                                Department name must have atleast 2 characters
+                            </mat-error>
+                            <mat-error *ngIf="updateStudentForm.controls['department']?.hasError('maxlength')">
+                                Department name cannot contain more than 256 characters
+                            </mat-error>
+                            <mat-error *ngIf="updateStudentForm.controls['department']?.hasError('required')">
+                                Department is required
+                            </mat-error>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="semester_no">Semester No.</label>
+                        <input type="text" formControlName="semester" id="semester_no" name="semester_no" />
+                        <div *ngIf="(updateStudentForm.controls['semester']?.dirty || updateStudentForm.controls['semester']?.touched) && updateStudentForm.controls['semester'].invalid">
+                            <mat-error *ngIf="updateStudentForm.controls['semester']?.hasError('maxlength')">
+                                Semester number cannot contain more than 2 digits
+                            </mat-error>
+                            <mat-error *ngIf="updateStudentForm.controls['semester']?.hasError('required')">
+                                Semester number is required
+                            </mat-error>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="current_cgpa">Current CGPA</label>
+                        <input type="number" formControlName="cgpa" id="current_cgpa" name="current_cgpa" />
+                    </div>
+                    <div class="form-group">
+                        <label for="mobile_no">Mobile No.</label>
+                        <input formControlName="mobile" id="mobile_no" name="mobile_no" />
+                        <div *ngIf="(updateStudentForm.controls['mobile']?.dirty || updateStudentForm.controls['mobile']?.touched)">
+                            <mat-error *ngIf="updateStudentForm.controls['mobile']?.hasError('required')">
+                                Mobile number is required
+                            </mat-error>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" formControlName="email" id="email" name="email" />
+                        <div *ngIf="(updateStudentForm.controls['email']?.dirty || updateStudentForm.controls['email']?.touched) && updateStudentForm.controls['email'].invalid">
+                            <mat-error *ngIf="updateStudentForm.controls['email']?.hasError('email')">
+                                Please enter a valid email
+                            </mat-error>
+                            <mat-error *ngIf="updateStudentForm.controls['email']?.hasError('required')">
+                                Email is required
+                            </mat-error>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-child">
+                <div class="form-group">
+                    <label for="dob">Date of Birth</label>
+                    <input formControlName="dob" id="dob" name="dob" />
+                    <div *ngIf="(updateStudentForm.controls['dob']?.dirty || updateStudentForm.controls['dob']?.touched)">
+                        <mat-error *ngIf="updateStudentForm.controls['dob']?.hasError('required')">
+                            Date of birth is required
+                        </mat-error>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="gender">Gender</label>
+                    <select formControlName="gender" id="gender" name="description" >
+                        <option>Male</option>
+                        <option>Female</option>
+                        <option>Others</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <input formControlName="address" id="address" name="address" />
+                    <div *ngIf="(updateStudentForm.controls['address']?.dirty || updateStudentForm.controls['address']?.touched) && updateStudentForm.controls['address'].invalid">
+                        <mat-error *ngIf="updateStudentForm.controls['address']?.hasError('maxlength')">
+                            Address cannot contain more than 256 characters
+                        </mat-error>
+                        <mat-error *ngIf="updateStudentForm.controls['address']?.hasError('required')">
+                            Address is required
+                        </mat-error>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="father_name">Father's Name</label>
+                    <input formControlName="fatherName" id="father_name" name="father_name"  />
+                    <div *ngIf="(updateStudentForm.controls['fatherName']?.dirty || updateStudentForm.controls['fatherName']?.touched) && updateStudentForm.controls['fatherName'].invalid">
+                        <mat-error *ngIf="updateStudentForm.controls['fatherName']?.hasError('minlength')">
+                            Father's name must have atleast 3 letters
+                        </mat-error>
+                        <mat-error *ngIf="updateStudentForm.controls['fatherName']?.hasError('maxlength')">
+                            Father's name cannot contain more than 256 letters
+                        </mat-error>
+                        <mat-error *ngIf="updateStudentForm.controls['fatherName']?.hasError('required')">
+                            Father's name is required
+                        </mat-error>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="mother_name">Mother's Name</label>
+                    <input formControlName="motherName" id="mother_name" name="mother_name" />
+                    <div *ngIf="(updateStudentForm.controls['motherName']?.dirty || updateStudentForm.controls['motherName']?.touched) && updateStudentForm.controls['motherName'].invalid">
+                        <mat-error *ngIf="updateStudentForm.controls['motherName']?.hasError('minlength')">
+                            Mother's name must have atleast 3 letters
+                        </mat-error>
+                        <mat-error *ngIf="updateStudentForm.controls['motherName']?.hasError('maxlength')">
+                            Mother's name cannot contain more than 256 letters
+                        </mat-error>
+                        <mat-error *ngIf="updateStudentForm.controls['motherName']?.hasError('required')">
+                            Mother's name is required
+                        </mat-error>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-success" [disabled]="updateStudentForm.invalid">Submit</button>
     </div>
-    <div class="form-group">
-        <label for="department">Department</label>
-        <input class="form-control" id="department" required name="department" [(ngModel)]="student.department" />
-    </div>
-    <div class="form-group">
-        <label for="semester_no">Semester No.</label>
-        <input class="form-control" id="semester" required name="semester" [(ngModel)]="student.semester_no" />
-    </div>
-    <div class="form-group">
-        <label for="current_cgpa">Current CGPA</label>
-        <input class="form-control" id="cgpa" required name="cgpa" [(ngModel)]="student.current_cgpa" />
-    </div>
-    <div class="form-group">
-        <label for="mobile_no">Mobile No.</label>
-        <input class="form-control" id="mobile" required name="mobile" [(ngModel)]="student.mobile_no" />
-    </div>
-    <div class="form-group">
-        <label for="email">Email</label>
-        <input class="form-control" id="email" required name="email" [(ngModel)]="student.email" />
-    </div>
-    <div class="form-group">
-        <label for="dob">Date of Birth</label>
-        <input class="form-control" id="dob" name="dob" [(ngModel)]="student.dob" />
-    </div>
-    <div class="form-group">
-        <label for="gender">Gender</label>
-        <input class="form-control" id="gender" required name="description" [(ngModel)]="student.gender" />
-    </div>
-    <div class="form-group">
-        <label for="address">Address</label>
-        <input class="form-control" id="address" required name="address" [(ngModel)]="student.address" />
-    </div>
-    <div class="form-group">
-        <label for="father_name">Father's Name</label>
-        <input class="form-control" id="father_name" required name="father_name" [(ngModel)]="student.father_name" />
-    </div>
-    <div class="form-group">
-        <label for="mother_name">Mother's Name</label>
-        <input class="form-control" id="mother_name" required name="mother_name" [(ngModel)]="student.mother_name" />
-    </div>
-</div>
-<button class="btn btn-success" (click)="updateStudent(student.id)">Submit</button>
+</form>

@@ -1,0 +1,52 @@
+<h1 class="header">Sign Up</h1>
+<form [formGroup]="registerForm" (ngSubmit)="register()">
+    <div>
+    <div class="submit-form">
+        <div class="form-child">
+            <div class="form-group">
+                <label for="name">Username</label>
+                <input type="text" placeholder="Enter Your Username..." formControlName="name" class="form-control" id="name" name="name" />
+                <div *ngIf="(registerForm.controls['name']?.dirty || registerForm.controls['name']?.touched) && registerForm.controls['name'].invalid">
+                  <mat-error *ngIf="registerForm.controls['name']?.hasError('minlength')">
+                      Username must have atleast 3 letters
+                  </mat-error>
+                  <mat-error *ngIf="registerForm.controls['name']?.hasError('maxlength')">
+                      Username cannot contain more than 256 letters
+                  </mat-error>
+                  <mat-error *ngIf="registerForm.controls['name']?.hasError('required')">
+                      Username is required
+                  </mat-error>
+              </div>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" placeholder="Enter Your Email..." formControlName="email" class="form-control" id="email" name="email" />
+                <div *ngIf="(registerForm.controls['email']?.dirty || registerForm.controls['email']?.touched) && registerForm.controls['email'].invalid">
+                  <mat-error *ngIf="registerForm.controls['email']?.hasError('email')">
+                      Please enter a valid email
+                  </mat-error>
+                  <mat-error *ngIf="registerForm.controls['email']?.hasError('required')">
+                      Email is required
+                  </mat-error>
+              </div>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" placeholder="Enter Your Password..." formControlName="password" class="form-control" id="password" name="password" />
+                <div *ngIf="(registerForm.controls['password']?.dirty || registerForm.controls['password']?.touched) && registerForm.controls['password'].invalid">
+                  <mat-error *ngIf="registerForm.controls['password']?.hasError('minlength')">
+                      Password must have atleast 3 characters
+                  </mat-error>
+                  <mat-error *ngIf="registerForm.controls['password']?.hasError('maxlength')">
+                      Password cannot contain more than 11 characters
+                  </mat-error>
+                  <mat-error *ngIf="registerForm.controls['password']?.hasError('required')">
+                      Password is required
+                  </mat-error>
+              </div>
+            </div>
+        </div>
+    </div>
+    <button class="btn btn-success" [disabled]="registerForm.invalid">Submit</button>
+</div>
+</form>

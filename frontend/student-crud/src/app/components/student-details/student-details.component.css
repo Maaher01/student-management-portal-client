@@ -1,15 +1,17 @@
-.header {
-    text-align: center;
+button.back {
+  height: 45px;
+  width: 100px;
 }
 
-.card {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    max-width: 400px;
-    margin: auto;
-    text-align: center;
-  }
-  
-  .id {
-    color: grey;
-    font-size: 18px;
-  }
+i.pi {
+  font-size: 20px;
+}
+
+h1.header {
+  text-align: center;
+  font-size: 35px;
+}
+
+table {
+  font-size: 18px;
+}
