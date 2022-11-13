@@ -24,7 +24,8 @@ export class ForgotPasswordComponent {
     this.http.post(`http://localhost:3000/forgot`, this.forgotPasswordForm.value).subscribe({
       next: (res: any) => {
         if (res.user) {
-          localStorage.setItem('email', res.user.email)
+          let credentials = {name: res.user.name, email: res.user.email}
+          localStorage.setItem('credentials', JSON.stringify(credentials))
           this.router.navigateByUrl('/students')
         } else {
           this.router.navigateByUrl('/login')

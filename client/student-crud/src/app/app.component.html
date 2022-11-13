@@ -2,6 +2,7 @@
     <span>University Portal</span>
     <span class="fill"></span>
     <div *ngIf="IsloggedIn()">
+        <span class="name">Welcome, {{displayName()}}</span>
         <button class="logout" mat-raised-button color="warn" (click)="logOut()">
             Logout
             <mat-icon fontIcon="login"></mat-icon>

@@ -14,4 +14,10 @@ button.logout {
 
 .fill {
     flex: 1 1 auto;
-  }
+}
+
+.name {
+    color:aliceblue;
+    padding-right: 1rem;
+    font-size: 17px;
+}

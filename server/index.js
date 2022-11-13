@@ -101,7 +101,7 @@ app.put('/update/:id', (request, response) => {
 })
 
 app.post('/login', async function (req, res) {
-    const { name, email, password } = req.body
+    const { email, password } = req.body
     try {
         const data = await pool.query(`SELECT * FROM users WHERE email=$1;`, [email])
         const user = data.rows

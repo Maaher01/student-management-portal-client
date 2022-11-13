@@ -15,11 +15,15 @@ export class AppComponent {
   }
 
   IsloggedIn() {
-    return !!localStorage.getItem('email')
+    return !!localStorage.getItem('credentials')
+  }
+
+  displayName() {
+    return JSON.parse(localStorage.getItem("credentials")).name.split(' ')[0];
   }
 
   logOut() {
-    window.localStorage.removeItem('email');
+    window.localStorage.removeItem('credentials');
     this.router.navigate(['/login'])
   }
 }
