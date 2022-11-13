@@ -1,0 +1,17 @@
+button.logout {
+    float: right;
+    height: 40px;
+    font-size: 17px;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-child {
+    flex: 1;
+}
+
+.fill {
+    flex: 1 1 auto;
+  }

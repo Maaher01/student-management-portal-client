@@ -1,0 +1,9 @@
+  .modal-style-danger {
+    border-top: 4px solid #dc3545;
+    color: #dc3545;
+  }
+
+  button.btn {
+    width: 75px;
+    height: 40px;
+  }

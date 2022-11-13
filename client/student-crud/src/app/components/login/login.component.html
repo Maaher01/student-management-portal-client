@@ -1,0 +1,54 @@
+<div class="content">
+    <h1 class="header">Admin Login</h1>
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+        <div>
+            <div class="submit-form">
+                <div *ngIf="errorMessage" style="text-align: center">
+                    <mat-error>
+                        <strong class="error">Credentials do not match</strong>
+                    </mat-error>
+                </div>
+                <div class="form-child">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" placeholder="Enter Email..." formControlName="email" id="email"
+                            name="email" />
+                        <div
+                            *ngIf="(loginForm.controls['email']?.dirty || loginForm.controls['email']?.touched) && loginForm.controls['email'].invalid">
+                            <mat-error *ngIf="loginForm.controls['email']?.hasError('email')">
+                                Please enter a valid email
+                            </mat-error>
+                            <mat-error *ngIf="loginForm.controls['email']?.hasError('required')">
+                                Email is required
+                            </mat-error>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" placeholder="Enter Your Password..." formControlName="password"
+                            class="form-control" id="password" name="password" />
+                        <div
+                            *ngIf="(loginForm.controls['password']?.dirty || loginForm.controls['password']?.touched) && loginForm.controls['password'].invalid">
+                            <mat-error *ngIf="loginForm.controls['password']?.hasError('minlength')">
+                                Password must have atleast 3 characters
+                            </mat-error>
+                            <mat-error *ngIf="loginForm.controls['password']?.hasError('maxlength')">
+                                Password cannot contain more than 11 characters
+                            </mat-error>
+                            <mat-error *ngIf="loginForm.controls['password']?.hasError('required')">
+                                Password is required
+                            </mat-error>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="register">
+                <p>Don't have an account? Click here to <strong [routerLink]="['/register']">Sign Up</strong></p>
+            </div>
+            <div class="forgot">
+                <p><strong [routerLink]="['/forgot']">Forgot Password?</strong></p>
+            </div>
+            <button class="btn btn-success" [disabled]="loginForm.invalid">Submit</button>
+        </div>
+    </form>
+</div>

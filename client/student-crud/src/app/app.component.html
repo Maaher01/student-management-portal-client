@@ -1,0 +1,13 @@
+<mat-toolbar color="primary">
+    <span>University Portal</span>
+    <span class="fill"></span>
+    <div *ngIf="IsloggedIn()">
+        <button class="logout" mat-raised-button color="warn" (click)="logOut()">
+            Logout
+            <mat-icon fontIcon="login"></mat-icon>
+        </button>
+    </div>
+</mat-toolbar>
+<div class="container">
+    <router-outlet></router-outlet>
+</div>

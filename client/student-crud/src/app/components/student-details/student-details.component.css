@@ -1,0 +1,23 @@
+.header{
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+button.back {
+  height: 45px;
+  width: 100px;
+}
+
+i.pi {
+  font-size: 20px;
+}
+
+h1.header {
+  text-align: center;
+  font-size: 35px;
+}
+
+table {
+  font-size: 18px;
+}
