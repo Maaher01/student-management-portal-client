@@ -14,5 +14,4 @@ export class NumbersOnlyDirective {
       event.stopPropagation();
     }
   }
-
 }

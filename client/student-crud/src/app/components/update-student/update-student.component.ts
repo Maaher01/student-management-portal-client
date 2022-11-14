@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DatePipe } from '@angular/common';
+import { Student } from 'src/app/models/student';
 
 @Component({
   selector: 'app-update-student',
@@ -11,62 +12,66 @@ import { DatePipe } from '@angular/common';
   styleUrls: ['./update-student.component.css']
 })
 export class UpdateStudentComponent implements OnInit {
-  student: any = {};
+  student: Student = new Student();
   studentId: number = 0
 
-   updateStudentForm = new FormGroup({  name : new FormControl('', [
-    Validators.required,
-    Validators.minLength(3),
-    Validators.maxLength(256)
-  ]),
+  updateStudentForm = new FormGroup({
+    name: new FormControl('', [
+      Validators.required,
+      Validators.minLength(3),
+      Validators.maxLength(256)
+    ]),
 
-  department : new FormControl('', [
-    Validators.required,
-    Validators.minLength(2),
-    Validators.maxLength(256)
-  ]),
+    department: new FormControl('', [
+      Validators.required,
+      Validators.minLength(2),
+      Validators.maxLength(256)
+    ]),
 
-  semester : new FormControl('', [
-    Validators.required,
-    Validators.minLength(1),
-    Validators.maxLength(2)
-  ]),
+    semester: new FormControl(null, [
+      Validators.required,
+      Validators.minLength(1),
+      Validators.maxLength(2)
+    ]),
 
-  cgpa : new FormControl('', [
-    Validators.required
-  ]),
+    cgpa: new FormControl(null, [
+      Validators.required
+    ]),
 
-  mobile : new FormControl('', [
-    Validators.required
-  ]),
+    mobile: new FormControl('', [
+      Validators.required
+    ]),
 
-  email : new FormControl('', [
-    Validators.required,
-    Validators.email
-  ]),
+    email: new FormControl('', [
+      Validators.required,
+      Validators.email
+    ]),
 
-  dob : new FormControl('', [
-    Validators.required
-  ]),
+    dob: new FormControl('', [
+      Validators.required
+    ]),
 
-  gender : new FormControl('', [
-    Validators.required
-  ]),
+    gender: new FormControl('', [
+      Validators.required
+    ]),
 
-  address : new FormControl('', [
-    Validators.required,
-    Validators.maxLength(256)
-  ]),
+    address: new FormControl('', [
+      Validators.required,
+      Validators.maxLength(256)
+    ]),
 
-  fatherName : new FormControl('', [
-    Validators.required,
-    Validators.minLength(3)
-  ]),
+    fatherName: new FormControl('', [
+      Validators.required,
+      Validators.minLength(3),
+      Validators.maxLength(256)
+    ]),
 
-  motherName : new FormControl('', [
-    Validators.required,
-    Validators.minLength(3)
-  ])})
+    motherName: new FormControl('', [
+      Validators.required,
+      Validators.minLength(3),
+      Validators.maxLength(256)
+    ])
+  })
     
   constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) { }
 

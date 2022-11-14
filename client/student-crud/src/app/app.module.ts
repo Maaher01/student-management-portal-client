@@ -48,7 +48,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     RegisterComponent,
     ForgotPasswordComponent,
     DeleteModalComponent,
-    NumbersOnlyDirective
+    NumbersOnlyDirective,
   ],
   imports: [
     BrowserModule,

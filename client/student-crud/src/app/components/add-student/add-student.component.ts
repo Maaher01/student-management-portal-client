@@ -62,12 +62,14 @@ export class AddStudentComponent {
 
       fatherName : new FormControl('', [
         Validators.required,
-        Validators.minLength(3)
+        Validators.minLength(3),
+        Validators.maxLength(256)
       ]),
 
       motherName : new FormControl('', [
         Validators.required,
-        Validators.minLength(3)
+        Validators.minLength(3),
+        Validators.maxLength(256)
       ])
     })
 
