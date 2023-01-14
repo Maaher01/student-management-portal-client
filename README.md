@@ -1,1 +1,1 @@
-# internship-project
+# Student-Management-Portal
