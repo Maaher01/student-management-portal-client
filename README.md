@@ -1,6 +1,6 @@
 # Student-Management-Portal
 
-This is a student management portal application
+This is a student management portal application.
 
 ## Features
 
