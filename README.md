@@ -1,4 +1,4 @@
-# Student Management Portal
+# student-management-portal
 
 This is a student management portal application.
 
@@ -13,9 +13,17 @@ This is a student management portal application.
 
 **Technology used**: Node.js (Express.js), Angular, PostgreSQL
 
+## To run the node server:
+
+`cd` into the server folder and run `npm install` to install all dependencies
+
+Then, run `npm run dev` to start the server
+
+Add a .env file and add your own database credentials
+
 ## To run the angular application:
 
-Run `npm install` to install all dependencies.
+`cd` into the student-crud folder and run `npm install` to install all dependencies
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
