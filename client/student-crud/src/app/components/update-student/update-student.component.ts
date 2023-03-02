@@ -9,71 +9,64 @@ import { Student } from 'src/app/models/student';
 @Component({
   selector: 'app-update-student',
   templateUrl: './update-student.component.html',
-  styleUrls: ['./update-student.component.css']
+  styleUrls: ['./update-student.component.css'],
 })
 export class UpdateStudentComponent implements OnInit {
   student: Student = new Student();
-  studentId: number = 0
+  studentId: number = 0;
 
   updateStudentForm = new FormGroup({
     name: new FormControl('', [
       Validators.required,
       Validators.minLength(3),
-      Validators.maxLength(256)
+      Validators.maxLength(256),
     ]),
 
     department: new FormControl('', [
       Validators.required,
       Validators.minLength(2),
-      Validators.maxLength(256)
+      Validators.maxLength(256),
     ]),
 
     semester: new FormControl(null, [
       Validators.required,
       Validators.minLength(1),
-      Validators.maxLength(2)
+      Validators.maxLength(2),
     ]),
 
-    cgpa: new FormControl(null, [
-      Validators.required
-    ]),
+    cgpa: new FormControl(null, [Validators.required]),
 
-    mobile: new FormControl('', [
-      Validators.required
-    ]),
+    mobile: new FormControl('', [Validators.required]),
 
-    email: new FormControl('', [
-      Validators.required,
-      Validators.email
-    ]),
+    email: new FormControl('', [Validators.required, Validators.email]),
 
-    dob: new FormControl('', [
-      Validators.required
-    ]),
+    dob: new FormControl('', [Validators.required]),
 
-    gender: new FormControl('', [
-      Validators.required
-    ]),
+    gender: new FormControl('', [Validators.required]),
 
     address: new FormControl('', [
       Validators.required,
-      Validators.maxLength(256)
+      Validators.maxLength(256),
     ]),
 
     fatherName: new FormControl('', [
       Validators.required,
       Validators.minLength(3),
-      Validators.maxLength(256)
+      Validators.maxLength(256),
     ]),
 
     motherName: new FormControl('', [
       Validators.required,
       Validators.minLength(3),
-      Validators.maxLength(256)
-    ])
-  })
-    
-  constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) { }
+      Validators.maxLength(256),
+    ]),
+  });
+
+  constructor(
+    private http: HttpClient,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     //Get the student id from the current route
@@ -81,15 +74,16 @@ export class UpdateStudentComponent implements OnInit {
     this.studentId = Number(routeParams.get('id'));
 
     //Find the student corresponding with the id in the route
-    this.getStudentByIdtoEdit()
+    this.getStudentByIdtoEdit();
   }
 
   getStudentByIdtoEdit() {
-    this.http.get(`http://localhost:3000/student/${this.studentId}`).subscribe(
-      (res: any) => {
+    this.http
+      .get(`http://localhost:3000/student/${this.studentId}`)
+      .subscribe((res: any) => {
         this.student = res[0];
         this.updateStudentForm.patchValue({
-          name: this.student.full_name,
+          name: this.student.name,
           department: this.student.department,
           semester: this.student.semester_no,
           cgpa: this.student.current_cgpa,
@@ -99,14 +93,18 @@ export class UpdateStudentComponent implements OnInit {
           gender: this.student.gender,
           address: this.student.address,
           fatherName: this.student.father_name,
-          motherName: this.student.mother_name
-        })
-      }
-    )
+          motherName: this.student.mother_name,
+        });
+      });
   }
 
   updateStudent(id: number) {
-    this.http.put(`http://localhost:3000/update/${this.studentId}`, this.updateStudentForm.value).subscribe()
-    this.router.navigate(['./students'])
+    this.http
+      .put(
+        `http://localhost:3000/update/${this.studentId}`,
+        this.updateStudentForm.value
+      )
+      .subscribe();
+    this.router.navigate(['./students']);
   }
 }

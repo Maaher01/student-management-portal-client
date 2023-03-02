@@ -1,12 +1,15 @@
 <div class="card">
-  <p-table class="table" [value]="students" [paginator]="true" [rowHover]="true" [rowsPerPageOptions]="[10,20,30]" [rows]="10" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
+  <p-table class="table" [value]="students" [paginator]="true" [rowHover]="true" [rowsPerPageOptions]="[10,20,30]"
+    [rows]="10" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [showCurrentPageReport]="true">
     <ng-template pTemplate="caption">
       <div class="flex align-items-center justify-content-between">
         <div class="flex-child">
           <h2 class="m-0">Student List</h2>
         </div>
         <div class="flex-child">
-          <button class="new" mat-raised-button color="primary" [routerLink]="['/add']"><i class="pi pi-plus"> New</i></button>
+          <button class="new" mat-raised-button color="primary" [routerLink]="['/add']"><i class="pi pi-plus">
+              New</i></button>
         </div>
       </div>
     </ng-template>
@@ -23,7 +26,7 @@
     <ng-template pTemplate="body" let-student>
       <tr>
         <td>{{student.id}}</td>
-        <td>{{student.full_name}}</td>
+        <td>{{student.name}}</td>
         <td>{{student.department}}</td>
         <td>{{student.semester_no}}</td>
         <td>{{student.current_cgpa}}</td>
@@ -34,6 +37,7 @@
         </td>
       </tr>
     </ng-template>
-    <app-delete-modal #DeleteModal (newDeleteEvent)="getDeleteValue($event)" [modalStyle]="modalStyle" [modalTitle]="modalTitle" [modalBody]="modalBody" [modalButtonColor]="modalButtonColor"></app-delete-modal>
+    <app-delete-modal #DeleteModal (newDeleteEvent)="getDeleteValue($event)" [modalStyle]="modalStyle"
+      [modalTitle]="modalTitle" [modalBody]="modalBody" [modalButtonColor]="modalButtonColor"></app-delete-modal>
   </p-table>
 </div>

@@ -1,23 +1,20 @@
 const express = require("express");
 const cors = require("cors");
-const dotenv = require("dotenv").config();
-const { Client } = require("pg");
+require("dotenv").config();
+const { databaseConnection } = require("./config/config");
+const { pool } = require("./config/config");
 
 const app = express();
 
-const port = 3000;
+const PORT = process.env.PORT || 3000;
 
 //Middlewares
 app.use(cors({ credentials: true, origin: "http://localhost:4200" }));
 app.use(express.json());
 
-const Pool = require("pg").Pool;
-
-const pool = new Pool({
-	user: process.env.DATABASE_USER,
-	password: process.env.DATABASE_PASSWORD,
-	database: process.env.DATABASE_NAME,
-	port: process.env.DATABASE_PORT,
+const server = app.listen(PORT, async () => {
+	await databaseConnection();
+	console.log(`Server is running on port ${PORT}`);
 });
 
 pool.connect((err, client, release) => {
@@ -81,7 +78,7 @@ app.post("/students", (request, response) => {
 	} = request.body;
 
 	pool.query(
-		"INSERT INTO students (full_name, id, department, semester_no, current_cgpa, mobile_no, email, dob, gender, address, father_name, mother_name) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)",
+		"INSERT INTO students (name, id, department, semester_no, current_cgpa, mobile_no, email, dob, gender, address, father_name, mother_name) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)",
 		[
 			name,
 			id,
@@ -138,7 +135,7 @@ app.put("/update/:id", (request, response) => {
 	} = request.body;
 	console.log("request", request.body);
 	pool.query(
-		"UPDATE students SET full_name = $1, department = $2, semester_no = $3, current_cgpa = $4, mobile_no = $5, email = $6, dob = $7, gender = $8, address = $9, father_name = $10, mother_name = $11 WHERE id = $12",
+		"UPDATE students SET name = $1, department = $2, semester_no = $3, current_cgpa = $4, mobile_no = $5, email = $6, dob = $7, gender = $8, address = $9, father_name = $10, mother_name = $11 WHERE id = $12",
 		[
 			name,
 			department,
@@ -200,8 +197,4 @@ app.post("/forgot", async function (req, res) {
 		console.log(error);
 		res.status(500).json({ error: "Internal Server error" });
 	}
-});
-
-app.listen(port, () => {
-	console.log(`App is running on port ${port}`);
 });
